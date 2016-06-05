@@ -1,0 +1,73 @@
+.TH "db_create.c" 3 "Sun Jun 5 2016" "pictDB" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+db_create.c \- pictDB library: do_create implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'pictDB\&.h'\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBFILE_NAME_MAX_W_EXT\fP   37"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBdo_create\fP (struct \fBpictdb_file\fP *db_file, char const *file_name)"
+.br
+.RI "\fICreates the database called db_filename\&. Writes the header and the preallocated empty metadata array to database file\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+pictDB library: do_create implementation\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Cédric Viaccoz 
+.PP
+Matteo Giorla 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+21 Mar 2016 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int do_create (struct \fBpictdb_file\fP * db_file, const char * file_name)"
+
+.PP
+Creates the database called db_filename\&. Writes the header and the preallocated empty metadata array to database file\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdb_file\fP In memory structure with header and metadata\&. 
+.br
+\fIfile_name\fP name of the Database to be saved under on the disk\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code as defined in \fBerror\&.h\fP if anything went wrong, 0 otherwise\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pictDB from the source code\&.

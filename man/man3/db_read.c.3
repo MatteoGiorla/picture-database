@@ -1,0 +1,85 @@
+.TH "db_read.c" 3 "Sun Jun 5 2016" "pictDB" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+db_read.c \- pictDB library: do_read implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'pictDB\&.h'\fP
+.br
+\fC#include 'image_content\&.h'\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBfound\fP   db_file->metadata[index]"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBdo_read\fP (const char *pict_id, const int resolution_code, char **image_buffer, uint32_t *const image_size, struct \fBpictdb_file\fP *const db_file)"
+.br
+.RI "\fIExtracts image from image database and load it\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+pictDB library: do_read implementation\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Cédric Viaccoz 
+.PP
+Matteo Giorla 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+Apr 2016 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int do_read (const char * pict_id, const int resolution_code, char ** image_buffer, uint32_t *const image_size, struct \fBpictdb_file\fP *const db_file)"
+
+.PP
+Extracts image from image database and load it\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpict_id\fP name of the picture to find in the db 
+.br
+\fIresolution_code\fP tells in what resolution we want to read the image (thumbnail, small or original) 
+.br
+\fIimage_buffer\fP adress in memory where the image will be stocked 
+.br
+\fIimage_size\fP adress where the size of the image found will be stocked 
+.br
+\fI\fBpictdb_file\fP\fP the database to seek the image metadata
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code as defined in \fBerror\&.h\fP if anything went wrong, 0 otherwise\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pictDB from the source code\&.

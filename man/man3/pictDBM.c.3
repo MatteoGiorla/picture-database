@@ -1,0 +1,153 @@
+.TH "pictDBM.c" 3 "Sun Jun 5 2016" "pictDB" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pictDBM.c \- pictDB Manager: command line interpretor for pictDB core commands\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <vips/vips\&.h>\fP
+.br
+\fC#include 'pictDB\&.h'\fP
+.br
+\fC#include 'pictDBM_tools\&.h'\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBcommand_mapping\fP"
+.br
+.RI "\fIStruct représentant l'association commande-nom de fonction\&. \fP"
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMAX_COMMANDS\fP   7"
+.br
+.ti -1c
+.RI "#define \fBMF_ARGUMENT\fP   '-max_files'"
+.br
+.ti -1c
+.RI "#define \fBTR_ARGUMENT\fP   '-thumb_res'"
+.br
+.ti -1c
+.RI "#define \fBSR_ARGUMENT\fP   '-small_res'"
+.br
+.ti -1c
+.RI "#define \fBMF_DEFAULT\fP   10"
+.br
+.ti -1c
+.RI "#define \fBTR_DEFAULT\fP   64"
+.br
+.ti -1c
+.RI "#define \fBSR_DEFAULT\fP   256"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef int(* \fBcommand\fP) (int args, char *argvs[])"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBdo_list_cmd\fP (int args, char *argv[])"
+.br
+.ti -1c
+.RI "int \fBdo_create_cmd\fP (int args, char *argv[])"
+.br
+.ti -1c
+.RI "int \fBhelp\fP (int args, char *argv[])"
+.br
+.ti -1c
+.RI "int \fBdo_delete_cmd\fP (int args, char *argv[])"
+.br
+.ti -1c
+.RI "int \fBdo_insert_cmd\fP (int args, char *argv[])"
+.br
+.ti -1c
+.RI "int \fBdo_read_cmd\fP (int args, char *argv[])"
+.br
+.ti -1c
+.RI "int \fBdo_gc_cmd\fP (int args, char *argv[])"
+.br
+.ti -1c
+.RI "int \fBmain\fP (int argc, char *argv[])"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const struct \fBcommand_mapping\fP \fBcommands\fP [MAX_COMMANDS]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+pictDB Manager: command line interpretor for pictDB core commands\&. 
+
+Picture Database Management Tool
+.PP
+\fBAuthor:\fP
+.RS 4
+Mia Primorac
+.PP
+Cédric Viaccoz 
+.PP
+Matteo Giorla 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+21 Mar 2016 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int do_create_cmd (int args, char * argv[])"
+Prepares and calls do_create command\&. 
+.SS "int do_delete_cmd (int args, char * argv[])"
+Deletes a picture from the database\&. 
+.SS "int do_gc_cmd (int args, char * argv[])"
+Performs garbage collecting on pictDB\&. 
+.SS "int do_insert_cmd (int args, char * argv[])"
+Insert a picture into the database\&. 
+.SS "int do_list_cmd (int args, char * argv[])"
+Opens pictDB file and calls do_list command\&. 
+.SS "int do_read_cmd (int args, char * argv[])"
+Reads a picture from the database\&. 
+.SS "int help (int args, char * argv[])"
+Displays some explanations\&. 
+.SS "int main (int argc, char * argv[])"
+MAIN 
+.SH "Variable Documentation"
+.PP 
+.SS "const struct \fBcommand_mapping\fP commands[MAX_COMMANDS]"
+\fBInitial value:\fP
+.PP
+.nf
+= {
+    {"help", help},
+    {"list", do_list_cmd},
+    {"create", do_create_cmd},
+    {"delete", do_delete_cmd},
+    {"insert", do_insert_cmd},
+    {"read", do_read_cmd},
+    {"gc", do_gc_cmd}
+}
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pictDB from the source code\&.

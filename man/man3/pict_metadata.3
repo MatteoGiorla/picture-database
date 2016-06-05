@@ -1,0 +1,45 @@
+.TH "pict_metadata" 3 "Sun Jun 5 2016" "pictDB" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pict_metadata \- Struct représentant la metadata d'une image\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <pictDB\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "char \fBpict_id\fP [MAX_PIC_ID+1]"
+.br
+.ti -1c
+.RI "unsigned char \fBSHA\fP [SHA256_DIGEST_LENGTH]"
+.br
+.ti -1c
+.RI "uint32_t \fBres_orig\fP [2]"
+.br
+.ti -1c
+.RI "uint32_t \fBsize\fP [NB_RES]"
+.br
+.ti -1c
+.RI "uint64_t \fBoffset\fP [NB_RES]"
+.br
+.ti -1c
+.RI "uint16_t \fBis_valid\fP"
+.br
+.ti -1c
+.RI "uint16_t \fBunused_16\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Struct représentant la metadata d'une image\&. 
+
+Struct pour les metadata, comprenant l'identificateur, le hashcode et la résolution de l'image\&. Cette struct spécifie également la taille de l'image, son offset (position du fichier dans la DB) et une variable indiquant si l'image est encore utilisée ou effacée\&. A nouveau une variable non utilisée de 16 bits est déclarée pour d'éventuels ajouts futurs\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pictDB from the source code\&.

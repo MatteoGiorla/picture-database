@@ -1,0 +1,83 @@
+.TH "pictDB_server.c" 3 "Sun Jun 5 2016" "pictDB" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pictDB_server.c \- pictDB Server  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <vips/vips\&.h>\fP
+.br
+\fC#include 'libmongoose/mongoose\&.h'\fP
+.br
+\fC#include 'pictDB\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMAX_QUERY_PARAM\fP   5"
+.br
+.ti -1c
+.RI "#define \fBRES_ARG\fP   'res'"
+.br
+.ti -1c
+.RI "#define \fBPIC_ARG\fP   'pict_id'"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "char * \fBremove_jpg\fP (char *file_name)"
+.br
+.ti -1c
+.RI "void \fBsplit\fP (char *result[], char *tmp, const char *src, const char *delim, size_t len)"
+.br
+.ti -1c
+.RI "void \fBmg_error\fP (struct mg_connection *nc, int error)"
+.br
+.ti -1c
+.RI "int \fBmain\fP (int argc, char *argv[])"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+pictDB Server 
+
+Picture Database Server Management Tool
+.PP
+\fBAuthor:\fP
+.RS 4
+Cédric Viaccoz 
+.PP
+Matteo Giorla 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+Mai 2016 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int main (int argc, char * argv[])"
+MAIN for pictDB_server TODO(when disposing time) : make it close with s_sig_received (cf mongoose/\&.\&.\&./coap_server\&.c) 
+.SS "void mg_error (struct mg_connection * nc, int error)"
+Simply sends the webpage the error the server encountered\&. 
+.SS "char* remove_jpg (char * file_name)"
+utilitary function to remove jpg from the file got\&. 
+.SS "void split (char * result[], char * tmp, const char * src, const char * delim, size_t len)"
+Split the messsage received into a more pictDBM readable message\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pictDB from the source code\&.

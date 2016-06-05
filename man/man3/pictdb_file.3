@@ -1,0 +1,33 @@
+.TH "pictdb_file" 3 "Sun Jun 5 2016" "pictDB" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pictdb_file \- Struct représentant une base de données d'images\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <pictDB\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "FILE * \fBfpdb\fP"
+.br
+.ti -1c
+.RI "struct \fBpictdb_header\fP \fBheader\fP"
+.br
+.ti -1c
+.RI "struct \fBpict_metadata\fP * \fBmetadata\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Struct représentant une base de données d'images\&. 
+
+Struct pour les files, comprenant un pointeur sur le fichier de la DataBase, les informations générales sous forme d'un header et un tableau de metadata\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pictDB from the source code\&.

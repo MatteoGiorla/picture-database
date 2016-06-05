@@ -1,0 +1,438 @@
+.TH "pictDB.h" 3 "Sun Jun 5 2016" "pictDB" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pictDB.h \- Main header file for pictDB core library\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'error\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+\fC#include <openssl/sha\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBpictdb_header\fP"
+.br
+.RI "\fIStruct représentant le header d'une image\&. \fP"
+.ti -1c
+.RI "struct \fBpict_metadata\fP"
+.br
+.RI "\fIStruct représentant la metadata d'une image\&. \fP"
+.ti -1c
+.RI "struct \fBpictdb_file\fP"
+.br
+.RI "\fIStruct représentant une base de données d'images\&. \fP"
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCAT_TXT\fP   'EPFL PictDB binary'"
+.br
+.ti -1c
+.RI "#define \fBMAX_DB_NAME\fP   31"
+.br
+.ti -1c
+.RI "#define \fBMAX_PIC_ID\fP   127"
+.br
+.ti -1c
+.RI "#define \fBMAX_MAX_FILES\fP   100000"
+.br
+.ti -1c
+.RI "#define \fBMAX_THUMB_RES\fP   128"
+.br
+.ti -1c
+.RI "#define \fBMAX_SMALL_RES\fP   512"
+.br
+.ti -1c
+.RI "#define \fBEMPTY\fP   0"
+.br
+.ti -1c
+.RI "#define \fBNON_EMPTY\fP   1"
+.br
+.ti -1c
+.RI "#define \fBRES_THUMB\fP   0"
+.br
+.ti -1c
+.RI "#define \fBRES_SMALL\fP   1"
+.br
+.ti -1c
+.RI "#define \fBRES_ORIG\fP   2"
+.br
+.ti -1c
+.RI "#define \fBNB_RES\fP   3"
+.br
+.ti -1c
+.RI "#define \fBEXTENSION\fP   '\&.pictDB'"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBdo_list_mode\fP { \fBSTDOUT\fP, \fBJSON\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBprint_header\fP (struct \fBpictdb_header\fP const *header)"
+.br
+.RI "\fIPrints database header informations\&. \fP"
+.ti -1c
+.RI "void \fBprint_metadata\fP (struct \fBpict_metadata\fP const *metadata)"
+.br
+.RI "\fIPrints picture metadata informations\&. \fP"
+.ti -1c
+.RI "const char * \fBdo_list\fP (struct \fBpictdb_file\fP const *db_file, enum \fBdo_list_mode\fP \fBdo_list_mode\fP)"
+.br
+.RI "\fIDisplays (on stdout or json) pictDB metadata\&. \fP"
+.ti -1c
+.RI "int \fBdo_create\fP (struct \fBpictdb_file\fP *db_file, const char *file_name)"
+.br
+.RI "\fICreates the database called db_filename\&. Writes the header and the preallocated empty metadata array to database file\&. \fP"
+.ti -1c
+.RI "int \fBdo_delete\fP (const char *pictID, struct \fBpictdb_file\fP *db_file)"
+.br
+.RI "\fIDeletes the image from the database given in argument\&. \fP"
+.ti -1c
+.RI "int \fBdo_open\fP (const char *file_name, const char *open_mode, struct \fBpictdb_file\fP *const pict_file)"
+.br
+.RI "\fIOpens (and only opens) the file indicated by the name, and charges its header and metadatas onto the the struct given\&. \fP"
+.ti -1c
+.RI "void \fBdo_close\fP (struct \fBpictdb_file\fP *const pict_file)"
+.br
+.RI "\fICloses the file associated with struct \fBpictdb_file\fP (which was previously already opened) \fP"
+.ti -1c
+.RI "int \fBresolution_atoi\fP (const char *const resolution)"
+.br
+.RI "\fITransforms a resolution given in form of a character string into the right resolution code\&. \fP"
+.ti -1c
+.RI "int \fBdo_read\fP (const char *pict_id, const int resolution_code, char **image_buffer, uint32_t *const image_size, struct \fBpictdb_file\fP *const db_file)"
+.br
+.RI "\fIExtracts image from image database and load it\&. \fP"
+.ti -1c
+.RI "int \fBdo_insert\fP (const char *const image, size_t image_size, char *pict_id, struct \fBpictdb_file\fP *db_file)"
+.br
+.RI "\fIInserts image in image database\&. \fP"
+.ti -1c
+.RI "int \fBdo_gbcollect\fP (struct \fBpictdb_file\fP *db_file, char const *orig_file_name, char *tmp_file_name)"
+.br
+.RI "\fIPerforms garbage collecting on pictDB\&. \fP"
+.ti -1c
+.RI "int \fBread_disk_image\fP (const char *filename, size_t *const length, char **image_buffer)"
+.br
+.RI "\fIRead an image from the disk to store it in the DB\&. \fP"
+.ti -1c
+.RI "int \fBwrite_disk_image\fP (const char *const filename, char **image_buffer, uint32_t length)"
+.br
+.RI "\fIStore an image from the RAM into the disk\&. \fP"
+.ti -1c
+.RI "char * \fBcreatename\fP (const char *const pict_id, const int resolution_code)"
+.br
+.RI "\fIcreates the filename of the image that will be stocked on the disk \fP"
+.ti -1c
+.RI "void \fBfree_the_buffer\fP (char **image_buffer)"
+.br
+.RI "\fIfree the memory of a buffered image\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Main header file for pictDB core library\&. 
+
+Defines the format of the data structures that will be stored on the disk and provides interface functions\&.
+.PP
+The picture database starts with exactly one header structure followed by exactly pictdb_header\&.max_files metadata structures\&. The actual content is not defined by these structures because it should be stored as raw bytes appended at the end of the database file and addressed by offsets in the metadata structure\&.
+.PP
+\fBAuthor:\fP
+.RS 4
+Mia Primorac
+.PP
+Cédric Viaccoz 
+.PP
+Matteo Giorla 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+14 Mar 2016 
+.RE
+.PP
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBdo_list_mode\fP"
+Enum to choose the displaying format (stdout or json) 
+.SH "Function Documentation"
+.PP 
+.SS "char* createname (const char *const pict_id, const int resolution_code)"
+
+.PP
+creates the filename of the image that will be stocked on the disk 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpict_id\fP name of the image 
+.br
+\fIresolution_code\fP the resolution of the output image 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a pointer to the zone in RAM where the name is stored, NULL if an error occured\&.
+.RE
+.PP
+create the filename of the image to be written on the disk according its resolution code\&. 
+.SS "void do_close (struct \fBpictdb_file\fP *const pict_file)"
+
+.PP
+Closes the file associated with struct \fBpictdb_file\fP (which was previously already opened) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpict_file\fP In memory structure with header and metadata\&.
+.RE
+.PP
+close the file associated with the struct\&. And free the memory used by the metadatas\&. 
+.SS "int do_create (struct \fBpictdb_file\fP * db_file, const char * file_name)"
+
+.PP
+Creates the database called db_filename\&. Writes the header and the preallocated empty metadata array to database file\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdb_file\fP In memory structure with header and metadata\&. 
+.br
+\fIfile_name\fP name of the Database to be saved under on the disk\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code as defined in \fBerror\&.h\fP if anything went wrong, 0 otherwise\&. 
+.RE
+.PP
+
+.SS "int do_delete (const char * pictID, struct \fBpictdb_file\fP * db_file)"
+
+.PP
+Deletes the image from the database given in argument\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpictID\fP the name of the picture wanted to be erased \&. 
+.br
+\fIdb_file\fP In memory structure with header and metadata\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code as defined in \fBerror\&.h\fP if anything went wrong, 0 otherwise\&. 
+.RE
+.PP
+
+.SS "int do_gbcollect (struct \fBpictdb_file\fP * db_file, char const * orig_file_name, char * tmp_file_name)"
+
+.PP
+Performs garbage collecting on pictDB\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdb_file\fP In memory structure with header and metadata\&. 
+.br
+\fIorig_file_name\fP name of the original file 
+.br
+\fItmp_file_name\fP name of the temporary file to perform the garbage collecting
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code as defined in \fBerror\&.h\fP if anything went wrong, 0 otherwise\&. 
+.RE
+.PP
+
+.SS "int do_insert (const char *const image, size_t image_size, char * pict_id, struct \fBpictdb_file\fP * db_file)"
+
+.PP
+Inserts image in image database\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIimage\fP the image to insert into the database 
+.br
+\fIimage_size\fP the size of the image to insert 
+.br
+\fIpict_id\fP the id of the image to insert 
+.br
+\fIdb_file\fP the database file into which the image has to be inserted
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code as defined in \fBerror\&.h\fP if anything went wrong, 0 otherwise\&. 
+.RE
+.PP
+
+.SS "const char* do_list (struct \fBpictdb_file\fP const * pictdb_file, enum \fBdo_list_mode\fP \fBdo_list_mode\fP)"
+
+.PP
+Displays (on stdout or json) pictDB metadata\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdb_file\fP In memory structure with header and metadata\&. 
+.br
+\fIdo_list_mode\fP enum to choose between the differents formats in the enum do_list_mode 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+string to print in the case where the format is JSON, else NULL
+.RE
+.PP
+Do List\&. 
+.SS "int do_open (const char * file_name, const char * open_mode, struct \fBpictdb_file\fP *const pict_file)"
+
+.PP
+Opens (and only opens) the file indicated by the name, and charges its header and metadatas onto the the struct given\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfile_name\fP the name of the file wanted to be open\&. 
+.br
+\fIopen_mode\fP the mode with which we want to open the file (i\&.e\&. 'r+', 'wb',\&.\&.\&.)\&. 
+.br
+\fIpict_file\fP the struct where the header and metadata are stocked\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code as defined in \fBerror\&.h\fP if anything went wrong, 0 otherwise\&.
+.RE
+.PP
+open the file according to its mode (i\&.e 'rb', 'rw',\&.\&.\&.) and stocks it into a \fBpictdb_file\fP\&. 
+.SS "int do_read (const char * pict_id, const int resolution_code, char ** image_buffer, uint32_t *const image_size, struct \fBpictdb_file\fP *const db_file)"
+
+.PP
+Extracts image from image database and load it\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpict_id\fP name of the picture to find in the db 
+.br
+\fIresolution_code\fP tells in what resolution we want to read the image (thumbnail, small or original) 
+.br
+\fIimage_buffer\fP adress in memory where the image will be stocked 
+.br
+\fIimage_size\fP adress where the size of the image found will be stocked 
+.br
+\fI\fBpictdb_file\fP\fP the database to seek the image metadata
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code as defined in \fBerror\&.h\fP if anything went wrong, 0 otherwise\&. 
+.RE
+.PP
+
+.SS "void free_the_buffer (char ** image_buffer)"
+
+.PP
+free the memory of a buffered image\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIimage_buffer\fP pointer of the pointer where the data is stocked\&.
+.RE
+.PP
+Take care of freeing the memory of the buffer et putting it to NULL 
+.SS "void print_header (struct \fBpictdb_header\fP const * header)"
+
+.PP
+Prints database header informations\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIheader\fP The header to be displayed\&.
+.RE
+.PP
+pictDB header display\&. 
+.SS "void print_metadata (struct \fBpict_metadata\fP const * metadata)"
+
+.PP
+Prints picture metadata informations\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImetadata\fP The metadata of one picture\&.
+.RE
+.PP
+Metadata display\&. 
+.SS "int read_disk_image (const char * filename, size_t *const length, char ** image_buffer)"
+
+.PP
+Read an image from the disk to store it in the DB\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfilename\fP filename of the image on the disk 
+.br
+\fIlength\fP place where the size of the image on the disk will be stored 
+.br
+\fIimage_buffer\fP pointer to the place where the buffered image will be stored on the RAM 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a pointer to the zone in RAM where the image is stored, NULL if an error occured\&.
+.RE
+.PP
+Read the jpeg image located on the disk and transform it into a a chunk of bytes\&. 
+.SS "int resolution_atoi (const char *const resolution)"
+
+.PP
+Transforms a resolution given in form of a character string into the right resolution code\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIresolution\fP the given resolution 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code as defined in \fBerror\&.h\fP if anything went wrong, 0 otherwise\&.
+.RE
+.PP
+Transforms a resolution given in form of a character string into the right resolution code\&. 
+.SS "int write_disk_image (const char *const filename, char ** image_buffer, uint32_t length)"
+
+.PP
+Store an image from the RAM into the disk\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfilename\fP file name of the image on the disk 
+.br
+\fIimage_buffer\fP place where the image is stored in the RAM 
+.br
+\fIlength\fP size of the image buffered inthe RAM 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code as defined in \fBerror\&.h\fP if anything went wrong, 0 otherwise\&.
+.RE
+.PP
+Writes the image buffered into a jpeg file on the disk 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pictDB from the source code\&.

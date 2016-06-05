@@ -1,0 +1,28 @@
+digraph "pictDB.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="pictDB.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="db_create.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db__create_8c.html",tooltip="pictDB library: do_create implementation. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="db_delete.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db__delete_8c.html",tooltip="pictDB library: do_delete implementation. "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="db_gbcollect.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db__gbcollect_8c.html",tooltip="pictDB library: garbage collector implementation. "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="db_insert.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db__insert_8c.html",tooltip="pictDB library: do_insert implementation. "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="db_list.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db__list_8c.html",tooltip="pictDB: do_list implementation "];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="db_read.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db__read_8c.html",tooltip="pictDB library: do_read implementation. "];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="db_utils.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db__utils_8c.html",tooltip="implementation of several tool functions for pictDB "];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="dedup.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dedup_8c.html",tooltip="pictDB library: dedup implementation. "];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="image_content.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$image__content_8c.html",tooltip="pictDB library: image_content implementation. "];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="pictDB_server.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pictDB__server_8c.html",tooltip="pictDB Server "];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="pictDBM.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pictDBM_8c.html",tooltip="pictDB Manager: command line interpretor for pictDB core commands. "];
+}

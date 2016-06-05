@@ -1,0 +1,82 @@
+.TH "db_insert.c" 3 "Sun Jun 5 2016" "pictDB" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+db_insert.c \- pictDB library: do_insert implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'pictDB\&.h'\fP
+.br
+\fC#include 'error\&.h'\fP
+.br
+\fC#include 'dedup\&.h'\fP
+.br
+\fC#include 'image_content\&.h'\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <openssl/sha\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBdo_insert\fP (const char *const image, size_t image_size, char *pict_id, struct \fBpictdb_file\fP *db_file)"
+.br
+.RI "\fIInserts image in image database\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+pictDB library: do_insert implementation\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Cédric Viaccoz 
+.PP
+Matteo Giorla 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+Apr 2016 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int do_insert (const char *const image, size_t image_size, char * pict_id, struct \fBpictdb_file\fP * db_file)"
+
+.PP
+Inserts image in image database\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIimage\fP the image to insert into the database 
+.br
+\fIimage_size\fP the size of the image to insert 
+.br
+\fIpict_id\fP the id of the image to insert 
+.br
+\fIdb_file\fP the database file into which the image has to be inserted
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code as defined in \fBerror\&.h\fP if anything went wrong, 0 otherwise\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pictDB from the source code\&.

@@ -1,0 +1,45 @@
+.TH "pictdb_header" 3 "Sun Jun 5 2016" "pictDB" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pictdb_header \- Struct représentant le header d'une image\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <pictDB\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "char \fBdb_name\fP [MAX_DB_NAME+1]"
+.br
+.ti -1c
+.RI "uint32_t \fBdb_version\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBnum_files\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBmax_files\fP"
+.br
+.ti -1c
+.RI "uint16_t \fBres_resized\fP [NB_RES-1][NB_RES-1]"
+.br
+.ti -1c
+.RI "uint32_t \fBunused_32\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBunused_64\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Struct représentant le header d'une image\&. 
+
+Struct pour les headers, comprenant le nom, la version, le nombre de fichier actuel, le nombre maximal de fichier et les possibles résolutions de la base de donnée\&. Deux variables non utilisés de 32 et 64 bits sont également présents pour d'éventuels ajouts dans le futur\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pictDB from the source code\&.

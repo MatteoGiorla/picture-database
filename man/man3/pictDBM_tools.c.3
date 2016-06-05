@@ -1,0 +1,64 @@
+.TH "pictDBM_tools.c" 3 "Sun Jun 5 2016" "pictDB" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pictDBM_tools.c \- pictDB Manager : useful tool functions  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdint\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <inttypes\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBdefine_atouintN\fP(N)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+pictDB Manager : useful tool functions 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Jean-Cédric Chappelier 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+25 Nov 2015 
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define define_atouintN(N)"
+\fBValue:\fP
+.PP
+.nf
+uint ## N ## _t \
+atouint ## N(const char* str) \
+{ \
+    char* endptr; \
+    errno = 0; \
+    uintmax_t val = strtoumax(str, &endptr, 10); \
+    if (errno == ERANGE || val > UINT ## N ## _MAX \
+        || endptr == str || *endptr != '\0') { \
+        errno = ERANGE; \
+        return 0; \
+    } \
+    return (uint ## N ## _t) val; \
+}
+.fi
+Tool functions for string to uint<N>_t conversion\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pictDB from the source code\&.

@@ -1,0 +1,80 @@
+.TH "db_gbcollect.c" 3 "Sun Jun 5 2016" "pictDB" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+db_gbcollect.c \- pictDB library: garbage collector implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'pictDB\&.h'\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBcurrent\fP   db_file->metadata[i]"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBread_and_write_image\fP (struct \fBpictdb_file\fP *db_file, struct \fBpictdb_file\fP *tmp_pictdb_file, int i, const int resolution_code)"
+.br
+.ti -1c
+.RI "int \fBdo_gbcollect\fP (struct \fBpictdb_file\fP *db_file, char const *orig_file_name, char *tmp_file_name)"
+.br
+.RI "\fIPerforms garbage collecting on pictDB\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+pictDB library: garbage collector implementation\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Cédric Viaccoz 
+.PP
+Matteo Giorla 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+Mai 2016 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int do_gbcollect (struct \fBpictdb_file\fP * db_file, char const * orig_file_name, char * tmp_file_name)"
+
+.PP
+Performs garbage collecting on pictDB\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdb_file\fP In memory structure with header and metadata\&. 
+.br
+\fIorig_file_name\fP name of the original file 
+.br
+\fItmp_file_name\fP name of the temporary file to perform the garbage collecting
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code as defined in \fBerror\&.h\fP if anything went wrong, 0 otherwise\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pictDB from the source code\&.

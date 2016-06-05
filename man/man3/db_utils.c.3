@@ -1,0 +1,136 @@
+.TH "db_utils.c" 3 "Sun Jun 5 2016" "pictDB" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+db_utils.c \- implementation of several tool functions for pictDB  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'pictDB\&.h'\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <openssl/sha\&.h>\fP
+.br
+\fC#include <inttypes\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBJPG_EXT\fP   '\&.jpg'"
+.br
+.ti -1c
+.RI "#define \fBJPG_SIZE\fP   4"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBprint_header\fP (struct \fBpictdb_header\fP const *header)"
+.br
+.RI "\fIPrints database header informations\&. \fP"
+.ti -1c
+.RI "void \fBprint_metadata\fP (struct \fBpict_metadata\fP const *metadata)"
+.br
+.RI "\fIPrints picture metadata informations\&. \fP"
+.ti -1c
+.RI "int \fBdo_open\fP (const char *file_name, const char *open_mode, struct \fBpictdb_file\fP *const pict_file)"
+.br
+.RI "\fIOpens (and only opens) the file indicated by the name, and charges its header and metadatas onto the the struct given\&. \fP"
+.ti -1c
+.RI "void \fBdo_close\fP (struct \fBpictdb_file\fP *const pict_file)"
+.br
+.RI "\fICloses the file associated with struct \fBpictdb_file\fP (which was previously already opened) \fP"
+.ti -1c
+.RI "int \fBresolution_atoi\fP (const char *const resolution)"
+.br
+.RI "\fITransforms a resolution given in form of a character string into the right resolution code\&. \fP"
+.ti -1c
+.RI "int \fBread_disk_image\fP (const char *filename, size_t *const length, char **image_buffer)"
+.br
+.RI "\fIRead an image from the disk to store it in the DB\&. \fP"
+.ti -1c
+.RI "int \fBwrite_disk_image\fP (const char *const filename, char **image_buffer, uint32_t length)"
+.br
+.RI "\fIStore an image from the RAM into the disk\&. \fP"
+.ti -1c
+.RI "char * \fBcreatename\fP (const char *const pict_id, const int resolution_code)"
+.br
+.RI "\fIcreates the filename of the image that will be stocked on the disk \fP"
+.ti -1c
+.RI "void \fBfree_the_buffer\fP (char **image_buffer)"
+.br
+.RI "\fIfree the memory of a buffered image\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+implementation of several tool functions for pictDB 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Mia Primorac
+.PP
+Cédric Viaccoz 
+.PP
+Matteo Giorla 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+14 Mar 2016 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "char* createname (const char *const pict_id, const int resolution_code)"
+
+.PP
+creates the filename of the image that will be stocked on the disk create the filename of the image to be written on the disk according its resolution code\&. 
+.SS "void do_close (struct \fBpictdb_file\fP *const pict_file)"
+
+.PP
+Closes the file associated with struct \fBpictdb_file\fP (which was previously already opened) close the file associated with the struct\&. And free the memory used by the metadatas\&. 
+.SS "int do_open (const char * file_name, const char * open_mode, struct \fBpictdb_file\fP *const pict_file)"
+
+.PP
+Opens (and only opens) the file indicated by the name, and charges its header and metadatas onto the the struct given\&. open the file according to its mode (i\&.e 'rb', 'rw',\&.\&.\&.) and stocks it into a \fBpictdb_file\fP\&. 
+.SS "void free_the_buffer (char ** image_buffer)"
+
+.PP
+free the memory of a buffered image\&. Take care of freeing the memory of the buffer et putting it to NULL 
+.SS "void print_header (struct \fBpictdb_header\fP const * header)"
+
+.PP
+Prints database header informations\&. pictDB header display\&. 
+.SS "void print_metadata (struct \fBpict_metadata\fP const * metadata)"
+
+.PP
+Prints picture metadata informations\&. Metadata display\&. 
+.SS "int read_disk_image (const char * filename, size_t *const length, char ** image_buffer)"
+
+.PP
+Read an image from the disk to store it in the DB\&. Read the jpeg image located on the disk and transform it into a a chunk of bytes\&. 
+.SS "int resolution_atoi (const char *const resolution)"
+
+.PP
+Transforms a resolution given in form of a character string into the right resolution code\&. Transforms a resolution given in form of a character string into the right resolution code\&. 
+.SS "int write_disk_image (const char *const filename, char ** image_buffer, uint32_t length)"
+
+.PP
+Store an image from the RAM into the disk\&. Writes the image buffered into a jpeg file on the disk 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pictDB from the source code\&.

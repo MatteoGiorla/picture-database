@@ -1,0 +1,63 @@
+.TH "dedup.h" 3 "Sun Jun 5 2016" "pictDB" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+dedup.h \- Header file for dedup\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'error\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+\fC#include <openssl/sha\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBdo_name_and_content_dedup\fP (struct \fBpictdb_file\fP *\fBpictdb_file\fP, uint32_t index)"
+.br
+.RI "\fIPrototype of the function do_name_and_content_dedup\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Header file for dedup\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Cédric Viaccoz 
+.PP
+Matteo Giorla 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+Apr 2016 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int do_name_and_content_dedup (struct \fBpictdb_file\fP * pictdb_file, uint32_t index)"
+
+.PP
+Prototype of the function do_name_and_content_dedup\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpictDB_file\fP The file to work on, previously opened\&. 
+.br
+\fIindex\fP The index of the image in the metadata array\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pictDB from the source code\&.

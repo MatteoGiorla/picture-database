@@ -1,0 +1,6 @@
+*.o
+*.jpg
+
+pictDBM - for tests of lazily_resize.c
+testDB02.pictdb_static
+testDB02.pictdb_dynamic

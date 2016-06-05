@@ -1,0 +1,119 @@
+.TH "image_content.h" 3 "Sun Jun 5 2016" "pictDB" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+image_content.h \- Header file for image_content\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'error\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+\fC#include <vips/vips\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBlazily_resize\fP (int resolution_code, struct \fBpictdb_file\fP *db_file, size_t index)"
+.br
+.RI "\fIResises an given image\&. \fP"
+.ti -1c
+.RI "int \fBget_resolution\fP (uint32_t *height, uint32_t *width, const char *image_buffer, size_t image_size)"
+.br
+.RI "\fIReturns the resoltion of a given image\&. \fP"
+.ti -1c
+.RI "void \fBpointer_liberation\fP (VipsImage **original, void **image_memory, size_t **length, void **image_buffer, VipsObject **process)"
+.br
+.RI "\fIutilitary function to free all memory used by lazily_resize whenever needed\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Header file for image_content\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Cédric Viaccoz 
+.PP
+Matteo Giorla 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+Apr 2016 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int get_resolution (uint32_t * height, uint32_t * width, const char * image_buffer, size_t image_size)"
+
+.PP
+Returns the resoltion of a given image\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIheight\fP parameter to store the height of the given image 
+.br
+\fIwidth\fP parameter to store the width of the given image 
+.br
+\fIimage_buffer\fP pointer to a memory area containing a JPEG image 
+.br
+\fIimage_size\fP size of this memory area
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+an error code accoding to \fBerror\&.h\fP 
+.RE
+.PP
+
+.SS "int lazily_resize (int resolution_code, struct \fBpictdb_file\fP * db_file, size_t index)"
+
+.PP
+Resises an given image\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIresolution_code\fP The resolution into which the image has to be created\&. 
+.br
+\fIdb_file\fP The database we are currently working on\&. 
+.br
+\fIindex\fP The index of the image that has to be created in the new resolution\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+an error code accoding to \fBerror\&.h\fP 
+.RE
+.PP
+
+.SS "void pointer_liberation (VipsImage ** original, void ** image_memory, size_t ** length, void ** image_buffer, VipsObject ** process)"
+
+.PP
+utilitary function to free all memory used by lazily_resize whenever needed\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIoriginal\fP double pointer to a VipsImage 
+.br
+\fIimage_memory\fP double generic pointer (void) 
+.br
+\fIlength\fP double pointer to a size_t 
+.br
+\fIimage_buffer\fP double generic pointer (void) 
+.br
+\fIprocess\fP double pointer to a VipsObject 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pictDB from the source code\&.
